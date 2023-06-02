@@ -1,0 +1,21 @@
+<div class="flex flex-col">
+    <div>
+        <mat-toolbar color="primary">
+            <span>My App</span>
+            <span class="flex-auto"></span>
+            <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon"
+                *ngIf="masterLayoutService.getState().search">
+                <mat-icon>search</mat-icon>
+            </button>
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
+                *ngIf="masterLayoutService.getState().back" (click)="masterLayoutService.back()">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
+                *ngIf="masterLayoutService.getState().save" (click)="masterLayoutService.save()">
+                <mat-icon>save</mat-icon>
+            </button>
+        </mat-toolbar>
+    </div>
+    <div><router-outlet></router-outlet></div>
+</div>

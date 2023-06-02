@@ -1,0 +1,38 @@
+<!-- <p>agency-edit works!</p>
+
+{{agency$ | async | json}} -->
+
+
+<form [formGroup]="agencyForm" *ngIf="agencyForm">
+    <div class="flex flex-col">
+        <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input #name formControlName="agencia" matInput />
+            <mat-error>El nombre es <strong>requerido</strong></mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Dirección</mat-label>
+            <input #name formControlName="direccion" matInput />
+            <mat-error>La dirección es <strong>requerida</strong></mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Distrito</mat-label>
+            <input #name formControlName="distrito" matInput />
+            <mat-error>El distrito es <strong>requerido</strong></mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Latitud</mat-label>
+            <input #name formControlName="lat" matInput />
+            <mat-error>La latitud es <strong>requerida</strong></mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Longitud</mat-label>
+            <input #name formControlName="lon" matInput />
+            <mat-error>La longitud es <strong>requerida</strong></mat-error>
+        </mat-form-field>
+    </div>
+</form>
