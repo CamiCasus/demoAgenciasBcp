@@ -2,17 +2,19 @@
     <div>
         <mat-toolbar color="primary">
             <span>My App</span>
-            <span class="flex-auto"></span>
-            <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon"
-                *ngIf="masterLayoutService.getState().search">
+            <span class="flex-auto">
+            </span>
+            <button mat-icon-button class="example-icon favorite-icon"
+                [disabled]="!masterLayoutService.getState('search').enabled"
+                *ngIf="masterLayoutService.getState('search').visible">
                 <mat-icon>search</mat-icon>
             </button>
-            <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
-                *ngIf="masterLayoutService.getState().back" (click)="masterLayoutService.back()">
+            <button mat-icon-button class="example-icon" [disabled]="!masterLayoutService.getState('back').enabled"
+                *ngIf="masterLayoutService.getState('back').visible" (click)="masterLayoutService.back()">
                 <mat-icon>arrow_back</mat-icon>
             </button>
-            <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
-                *ngIf="masterLayoutService.getState().save" (click)="masterLayoutService.save()">
+            <button mat-icon-button class="example-icon" [disabled]="!masterLayoutService.getState('save').enabled"
+                *ngIf="masterLayoutService.getState('save').visible" (click)="masterLayoutService.save()">
                 <mat-icon>save</mat-icon>
             </button>
         </mat-toolbar>

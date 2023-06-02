@@ -15,30 +15,39 @@ export class AgencyService {
 
   getAll(pageIndex: number, pageSize: number): Observable<Agency[]> {
     const result$ = this.http
-      .get<Agency[]>(`${this.environmentService.backendServerUrl}agencias.json`)
+      .get<Agency[]>(
+        `${this.environmentService.backendServerUrl}agencias_large.json`
+      )
       .pipe(
         map((p) => {
           const modifiedAgencies = this.getModifiedAgencies();
-          return p.map((q, index) => {
+          const createdAgencies = this.getCreatedAgencies();
+
+          let wholeData = p.concat(createdAgencies).map((q, index) => {
             const modifiedAgencyIndex = modifiedAgencies.findIndex(
-              (p) => p.id == index + 1
+              (p) => p.id == q.id
             );
             return modifiedAgencyIndex < 0
               ? { ...q, id: index + 1 }
               : modifiedAgencies[modifiedAgencyIndex];
           });
+
+          if (pageIndex > 0) {
+            const start = pageSize * (pageIndex - 1);
+            wholeData = wholeData.slice(start, start + pageSize);
+          }
+
+          return wholeData;
         })
       );
-
-    if (pageIndex > 1) {
-      return result$.pipe(skip(pageSize * (pageIndex - 1)), take(pageSize));
-    }
 
     return result$;
   }
 
   get(agencyId: number): Observable<Agency> {
-    return this.getAll(-1, -1).pipe(map((p) => p[agencyId]));
+    return this.getAll(-1, -1).pipe(
+      map((p) => p.find((p) => p.id == agencyId) as Agency)
+    );
   }
 
   update(agency: Agency): void {
@@ -56,8 +65,25 @@ export class AgencyService {
     localStorage.setItem('modified', JSON.stringify(modifiedAgencies));
   }
 
+  create(agency: Agency) {
+    this.getAll(-1, -1)
+      .pipe(map((p) => p.length))
+      .subscribe((index) => {
+        agency.id = index + 1;
+        localStorage.setItem('created', JSON.stringify(agency));
+      });
+  }
+
+  private getCreatedAgencies() {
+    return this.getStoredAgencies('created');
+  }
+
   private getModifiedAgencies(): Agency[] {
-    const value = localStorage.getItem('modified');
+    return this.getStoredAgencies('modified');
+  }
+
+  private getStoredAgencies(type: 'modified' | 'created') {
+    const value = localStorage.getItem(type);
     let modifiedAgencies: Agency[] = [];
 
     if (value) {

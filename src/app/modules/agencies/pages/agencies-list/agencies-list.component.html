@@ -1,13 +1,22 @@
-<div class="p-2 flex flex-row border-b-4 items-center" *ngFor="let agency of agencies$ | async; let i = index">
-    <div class="flex flex-col flex-wrap justify-center content-center basis-1/5">
-        <div class="rounded-full bg-red-400 h-8 w-8"></div>
+<div class="relative" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000"
+    (scrolled)="onScroll()">
+    <div class="p-2 flex flex-row border-b-4 items-center" *ngFor="let agency of agencies">
+        <div class="flex flex-col flex-wrap justify-center content-center basis-1/5">
+            <div class="rounded-full bg-red-400 h-8 w-8"></div>
+        </div>
+        <div class="flex flex-col basis-4/5">
+            <a [routerLink]="['edit', agency.id]"><span
+                    class="font-black text-lg">{{agency.id}}-{{agency.agencia}}</span></a>
+            <span class="font-black">{{agency.distrito}}</span>
+            <span class="text-xs font-thin italic">{{agency.direccion}}</span>
+        </div>
+        <div class="basis-1/5">
+            <mat-icon>star_border</mat-icon>
+        </div>
     </div>
-    <div class="flex flex-col basis-4/5">
-        <a [routerLink]="['edit', i]"><span class="font-black text-lg">{{agency.agencia}}</span></a>
-        <span class="font-black">{{agency.distrito}}</span>
-        <span class="text-xs font-thin italic">{{agency.direccion}}</span>
-    </div>
-    <div class="basis-1/5">
-        <mat-icon>star_border</mat-icon>
-    </div>
-  </div>
+
+    <a [routerLink]="['new']"
+        class="fixed z-90 bottom-10 right-8 bg-orange-400 w-10 h-10 lg:w-20 lg:h-20 rounded-full drop-shadow-lg flex justify-center items-center text-white text-4xl hover:bg-orange-700 hover:drop-shadow-2xl">
+        <mat-icon>add</mat-icon>
+    </a>
+</div>

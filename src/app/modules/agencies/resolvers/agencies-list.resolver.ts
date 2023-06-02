@@ -5,5 +5,5 @@ import { AgencyService } from "src/app/core/services/agency.service";
 
 export const agenciesListResolver: ResolveFn<Agency[]> =
     (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-      return inject(AgencyService).getAll(1, 100);
+      return inject(AgencyService).getAll(1, 20);
     };

@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [SplashScreenComponent],
@@ -18,6 +19,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatToolbarModule,
     MatButtonModule,
+    InfiniteScrollModule
   ],
   exports: [
     SplashScreenComponent,
@@ -26,6 +28,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatToolbarModule,
     MatButtonModule,
+    InfiniteScrollModule
   ],
   providers: [SplashScreenStateService],
 })
