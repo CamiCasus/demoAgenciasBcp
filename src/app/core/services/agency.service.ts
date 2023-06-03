@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, map, skip, take } from 'rxjs';
+import { Observable, delay, map, skip, take } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Agency } from '../models';
 import { EnvironmentService } from '../environment/environment.service';
@@ -19,13 +19,14 @@ export class AgencyService {
         `${this.environmentService.backendServerUrl}agencias_large.json`
       )
       .pipe(
+        delay(3000),
         map((p) => {
           const modifiedAgencies = this.getModifiedAgencies();
           const createdAgencies = this.getCreatedAgencies();
 
           let wholeData = p.concat(createdAgencies).map((q, index) => {
             const modifiedAgencyIndex = modifiedAgencies.findIndex(
-              (p) => p.id == q.id
+              (p) => p.id == index + 1
             );
             return modifiedAgencyIndex < 0
               ? { ...q, id: index + 1 }

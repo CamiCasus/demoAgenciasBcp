@@ -2,6 +2,7 @@ import { Injectable, signal } from '@angular/core';
 import { Observable, Subject, single } from 'rxjs';
 
 interface ToolbarState {
+  title?: string;
   search?: ButtonState;
   back?: ButtonState;
   save?: ButtonState;
@@ -16,6 +17,7 @@ interface ButtonState {
   providedIn: 'root',
 })
 export class MasterLayoutStateService {
+  titleState = signal('');
   backState = signal<ButtonState>({ visible: false, enabled: false });
   saveState = signal<ButtonState>({ visible: false, enabled: false });
   searchState = signal<ButtonState>({ visible: false, enabled: false });
@@ -39,24 +41,48 @@ export class MasterLayoutStateService {
     return { visible: false, enabled: false };
   }
 
+  getTitle(): string {
+    return this.titleState();
+  }
+
   update(state: ToolbarState) {
     setTimeout(() => {
+      if (state.title) this.titleState.set(state.title);
+
       this.backState.mutate((value) => {
-        value.enabled = state.back && state.back.enabled != undefined ? state.back.enabled : value.enabled;
-        value.visible = state.back && state.back.visible != undefined ? state.back.visible : value.visible;
+        value.enabled =
+          state.back && state.back.enabled != undefined
+            ? state.back.enabled
+            : value.enabled;
+        value.visible =
+          state.back && state.back.visible != undefined
+            ? state.back.visible
+            : value.visible;
       });
 
       this.saveState.mutate((value) => {
-        value.enabled = state.save && state.save.enabled != undefined ? state.save.enabled : value.enabled;
-        value.visible = state.save && state.save.visible != undefined ? state.save.visible : value.visible;
+        value.enabled =
+          state.save && state.save.enabled != undefined
+            ? state.save.enabled
+            : value.enabled;
+        value.visible =
+          state.save && state.save.visible != undefined
+            ? state.save.visible
+            : value.visible;
       });
 
       this.searchState.mutate((value) => {
-        value.enabled = state.search && state.search.enabled != undefined ? state.search.enabled : value.enabled;
-        value.visible = state.search && state.search.visible != undefined ? state.search.visible : value.visible;
+        value.enabled =
+          state.search && state.search.enabled != undefined
+            ? state.search.enabled
+            : value.enabled;
+        value.visible =
+          state.search && state.search.visible != undefined
+            ? state.search.visible
+            : value.visible;
       });
     }, 0);
-  }  
+  }
 
   back() {
     this.onBack$.next();

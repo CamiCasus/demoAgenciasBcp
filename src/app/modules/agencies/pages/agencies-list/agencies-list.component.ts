@@ -22,6 +22,7 @@ export class AgenciesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.masterLayoutService.update({
+      title: 'Agencias',
       search: { visible: true, enabled: true },
       back: { visible: false, enabled: false },
       save: { visible: false, enabled: false },

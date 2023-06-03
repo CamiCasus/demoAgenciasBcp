@@ -35,7 +35,7 @@ export class AgencyEditComponent implements OnInit, OnDestroy {
         tap((p) => {
           this.isEdit = p != undefined;
 
-          this.masterLayoutService.update({
+          this.masterLayoutService.update({           
             save: { enabled: this.agencyForm.valid },
           });
         })
@@ -52,7 +52,8 @@ export class AgencyEditComponent implements OnInit, OnDestroy {
   }
 
   manageHeader() {
-    this.masterLayoutService.update({
+    this.masterLayoutService.update({  
+      title: 'Detalle de Agencias',    
       back: { visible: true, enabled: true },
       save: { visible: true, enabled: true },
       search: { visible: false, enabled: true },
