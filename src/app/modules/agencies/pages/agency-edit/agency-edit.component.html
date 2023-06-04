@@ -18,6 +18,18 @@
         </mat-form-field>
 
         <mat-form-field>
+            <mat-label>Departamento</mat-label>
+            <input #name formControlName="departamento" matInput />
+            <mat-error>El departamento es <strong>requerido</strong></mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Provincia</mat-label>
+            <input #name formControlName="provincia" matInput />
+            <mat-error>La provincia es <strong>requerida</strong></mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
             <mat-label>Distrito</mat-label>
             <input #name formControlName="distrito" matInput />
             <mat-error>El distrito es <strong>requerido</strong></mat-error>
@@ -25,13 +37,13 @@
 
         <mat-form-field>
             <mat-label>Latitud</mat-label>
-            <input #name formControlName="lat" matInput />
+            <input type="number" #name formControlName="lat" matInput />
             <mat-error>La latitud es <strong>requerida</strong></mat-error>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Longitud</mat-label>
-            <input #name formControlName="lon" matInput />
+            <input type="number" #name formControlName="lon" matInput />
             <mat-error>La longitud es <strong>requerida</strong></mat-error>
         </mat-form-field>
     </div>

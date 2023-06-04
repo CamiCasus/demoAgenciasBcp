@@ -4,28 +4,20 @@
             <span>{{masterLayoutService.getTitle()}}</span>
 
             <span class="flex-auto">
-                <!-- <div class="flex items-center mx-5" *ngIf="search">
-                    <input class="w-full" #searchInput />
-                    <button matSuffix mat-icon-button aria-label="Clear" (click)="search = false">
-                        <mat-icon>close</mat-icon>
-                    </button>
-                </div> -->
             </span>
-            <div *ngIf="!search">
-                <button mat-icon-button class="example-icon favorite-icon"
-                    [disabled]="!masterLayoutService.getState('search').enabled"
-                    *ngIf="masterLayoutService.getState('search').visible">
-                    <mat-icon>search</mat-icon>
-                </button>
-                <button mat-icon-button class="example-icon" [disabled]="!masterLayoutService.getState('back').enabled"
-                    *ngIf="masterLayoutService.getState('back').visible" (click)="masterLayoutService.back()">
-                    <mat-icon>arrow_back</mat-icon>
-                </button>
-                <button mat-icon-button class="example-icon" [disabled]="!masterLayoutService.getState('save').enabled"
-                    *ngIf="masterLayoutService.getState('save').visible" (click)="masterLayoutService.save()">
-                    <mat-icon>save</mat-icon>
-                </button>
-            </div>
+            <button mat-icon-button class="example-icon favorite-icon"
+                [disabled]="!masterLayoutService.getState('search').enabled"
+                *ngIf="masterLayoutService.getState('search').visible">
+                <mat-icon>search</mat-icon>
+            </button>
+            <button mat-icon-button class="example-icon" [disabled]="!masterLayoutService.getState('back').enabled"
+                *ngIf="masterLayoutService.getState('back').visible" (click)="masterLayoutService.back()">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+            <button mat-icon-button class="example-icon" [disabled]="!masterLayoutService.getState('save').enabled"
+                *ngIf="masterLayoutService.getState('save').visible" (click)="masterLayoutService.save()">
+                <mat-icon>save</mat-icon>
+            </button>
 
         </mat-toolbar>
     </div>

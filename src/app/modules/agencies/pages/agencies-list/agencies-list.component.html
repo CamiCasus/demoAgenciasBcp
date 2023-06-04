@@ -2,16 +2,24 @@
     (scrolled)="onScroll()">
     <div class="p-2 flex flex-row border-b-4 items-center" *ngFor="let agency of agencies">
         <div class="flex flex-col flex-wrap justify-center content-center basis-1/5">
-            <div class="rounded-full bg-red-400 h-8 w-8"></div>
+            <img class="rounded-full h-8 w-8 lg:h-12 lg:w-12" src="../../../../../assets/images/agencia.png" />            
         </div>
         <div class="flex flex-col basis-4/5">
             <a [routerLink]="['edit', agency.id]"><span
-                    class="font-black text-lg">{{agency.id}}-{{agency.agencia}}</span></a>
+                    class="font-black text-lg">{{agency.agencia}}</span></a>
             <span class="font-black">{{agency.distrito}}</span>
             <span class="text-xs font-thin italic">{{agency.direccion}}</span>
         </div>
         <div class="basis-1/5">
-            <mat-icon>star_border</mat-icon>
+            <div class="flex flex-row">
+                <button mat-icon-button (click)="togleFavorite(agency)" title="Agregar a Favoritos">
+                    <mat-icon #icon [ngClass]="{'text-yellow-300': agency.isFavorite}">{{agency.isFavorite ? 'star' :
+                        'star_border'}}</mat-icon>
+                </button>
+                <button mat-icon-button (click)="showMap(agency)" title="Mostrar Ubicación">
+                    <mat-icon>map</mat-icon>
+                </button>
+            </div>
         </div>
     </div>
 

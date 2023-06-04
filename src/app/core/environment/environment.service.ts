@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class EnvironmentService {
 
-  public backendServerUrl = 'assets/data/';
+  public backendServerUrl = 'http://localhost:4200/assets/data/';
 
   constructor() {}
 }

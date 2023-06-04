@@ -16,6 +16,12 @@ export class MessageService {
       toast: true,
       timer: 2000,
       showConfirmButton: false,
+      timerProgressBar: true,
+      showClass: {
+        popup: 'swal2-show',
+        backdrop: 'swal2-backdrop-show',
+        icon: 'swal2-icon-show'
+      },
       position: 'top-end',
     });
 

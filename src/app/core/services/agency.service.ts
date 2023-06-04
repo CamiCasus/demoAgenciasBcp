@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, delay, map, skip, take } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Observable, delay, map, of, skip, take } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Agency } from '../models';
 import { EnvironmentService } from '../environment/environment.service';
 
@@ -16,10 +16,9 @@ export class AgencyService {
   getAll(pageIndex: number, pageSize: number): Observable<Agency[]> {
     const result$ = this.http
       .get<Agency[]>(
-        `${this.environmentService.backendServerUrl}agencias_large.json`
+        `${this.environmentService.backendServerUrl}agencias.json`
       )
       .pipe(
-        delay(3000),
         map((p) => {
           const modifiedAgencies = this.getModifiedAgencies();
           const createdAgencies = this.getCreatedAgencies();
@@ -29,7 +28,7 @@ export class AgencyService {
               (p) => p.id == index + 1
             );
             return modifiedAgencyIndex < 0
-              ? { ...q, id: index + 1 }
+              ? { ...q, id: index + 1, isFavorite: false }
               : modifiedAgencies[modifiedAgencyIndex];
           });
 
@@ -73,6 +72,13 @@ export class AgencyService {
         agency.id = index + 1;
         localStorage.setItem('created', JSON.stringify(agency));
       });
+  }
+
+  demo() {
+    //
+    return this.http
+      .get('https://api.publicapis.org/entries')
+      .pipe(delay(2000));
   }
 
   private getCreatedAgencies() {

@@ -20,7 +20,7 @@ export class MasterLayoutComponent {
   ngOnInit(): void {
     setTimeout(() => {
       this.splashScreenStateService.stop();
-    }, 5000);
+    }, 3000);
   }
 
   back() {

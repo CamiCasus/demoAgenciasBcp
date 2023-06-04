@@ -1,9 +1,11 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, concat, forkJoin, map, tap } from 'rxjs';
+import { map } from 'rxjs';
 import { Agency } from 'src/app/core/models';
 import { AgencyService } from 'src/app/core/services';
 import { MasterLayoutStateService } from 'src/app/layouts/master-layout/master-layout-state.service';
+import { AgencyMapComponent } from './agency-map.component';
 
 @Component({
   selector: 'app-agencies-list',
@@ -17,7 +19,8 @@ export class AgenciesListComponent implements OnInit {
   constructor(
     private masterLayoutService: MasterLayoutStateService,
     private activatedRoute: ActivatedRoute,
-    private agencyService: AgencyService
+    private agencyService: AgencyService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -37,5 +40,21 @@ export class AgenciesListComponent implements OnInit {
     this.agencyService
       .getAll(++this.currentPage, 20)
       .subscribe((p) => this.agencies.push(...p));
+  }
+
+  togleFavorite(agency: Agency) {
+    agency.isFavorite = !agency.isFavorite;
+    this.agencyService.update(agency);
+  }
+
+  showMap(agency: Agency) {
+    this.dialog.open(AgencyMapComponent, {
+      width: '100%',
+      enterAnimationDuration: '350ms',
+      exitAnimationDuration: '350ms',
+      data: {
+        agency
+      }
+    });
   }
 }
