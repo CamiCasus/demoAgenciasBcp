@@ -1,0 +1,11 @@
+<button mat-icon-button *ngIf="!isSearch && visible" [disabled]="!enable" (click)="open()" title="Buscar">
+    <mat-icon>search</mat-icon>
+</button>
+<div class="absolute ml-32 lg:ml-64 inset-0 flex items-center z-99 bg-[#3f51b5]" *ngIf="isSearch">
+    <mat-icon class="w-2">search</mat-icon>
+    <input class="w-full outline-none text-xs lg:text-lg  h-full px-2 bg-[#3f51b5]" [formControl]="searchControl"
+        [placeholder]="'Presionar Enter para Buscar...'" #barSearchInput (keydown)="onKeydown($event)">
+    <button class="lg:right-5 shrink-0 w-10 h-10" mat-icon-button (click)="close()" title="Cerrar">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>

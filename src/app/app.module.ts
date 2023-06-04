@@ -3,16 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MasterLayoutComponent } from './layouts/master-layout/master-layout.component';
+
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgHttpLoaderModule } from 'ng-http-loader';
+import { LayoutsModule } from './layouts/layouts.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MasterLayoutComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -20,6 +20,7 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
     HttpClientModule,
     SharedModule,
     BrowserAnimationsModule,
+    LayoutsModule,
     NgHttpLoaderModule.forRoot()
   ],
   providers: [],

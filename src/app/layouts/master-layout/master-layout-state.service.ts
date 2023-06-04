@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { Observable, Subject, single } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, single } from 'rxjs';
 
 interface ToolbarState {
   title?: string;
@@ -24,6 +24,7 @@ export class MasterLayoutStateService {
 
   private onBack$ = new Subject<void>();
   private onSave$ = new Subject<void>();
+  private onSearch$ = new BehaviorSubject<string>('');
 
   private defaultStates = {
     back: { visible: false, enabled: false },
@@ -98,5 +99,13 @@ export class MasterLayoutStateService {
 
   onSave(): Observable<void> {
     return this.onSave$.asObservable();
+  }
+
+  search(term: string) {
+    this.onSearch$.next(term);
+  }
+
+  onSearch() : Observable<string> {
+    return this.onSearch$.asObservable();
   }
 }

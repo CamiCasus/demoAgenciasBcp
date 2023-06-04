@@ -13,11 +13,13 @@ export class AgencyService {
     private environmentService: EnvironmentService
   ) {}
 
-  getAll(pageIndex: number, pageSize: number): Observable<Agency[]> {
+  getAll(
+    pageIndex: number,
+    pageSize: number,
+    term: string = ''
+  ): Observable<Agency[]> {
     const result$ = this.http
-      .get<Agency[]>(
-        `${this.environmentService.backendServerUrl}agencias.json`
-      )
+      .get<Agency[]>(`${this.environmentService.backendServerUrl}agencias_large.json`)
       .pipe(
         map((p) => {
           const modifiedAgencies = this.getModifiedAgencies();
@@ -31,6 +33,8 @@ export class AgencyService {
               ? { ...q, id: index + 1, isFavorite: false }
               : modifiedAgencies[modifiedAgencyIndex];
           });
+
+          wholeData = this.filterData(wholeData, term);
 
           if (pageIndex > 0) {
             const start = pageSize * (pageIndex - 1);
@@ -74,13 +78,6 @@ export class AgencyService {
       });
   }
 
-  demo() {
-    //
-    return this.http
-      .get('https://api.publicapis.org/entries')
-      .pipe(delay(2000));
-  }
-
   private getCreatedAgencies() {
     return this.getStoredAgencies('created');
   }
@@ -98,5 +95,18 @@ export class AgencyService {
     }
 
     return modifiedAgencies;
+  }
+
+  private filterData(data: Agency[], term: string): Agency[] {
+    term = term.toUpperCase();
+
+    return data.filter(
+      (p) =>
+        p.agencia.toUpperCase().includes(term) ||
+        p.departamento.toUpperCase().includes(term) ||
+        p.direccion.toUpperCase().includes(term) ||
+        p.distrito.toUpperCase().includes(term) ||
+        p.provincia.toUpperCase().includes(term)
+    );
   }
 }

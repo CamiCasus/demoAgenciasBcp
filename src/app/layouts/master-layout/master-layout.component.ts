@@ -9,8 +9,6 @@ import { Location } from '@angular/common';
   styleUrls: ['./master-layout.component.scss'],
 })
 export class MasterLayoutComponent {
-  search = false;
-
   constructor(
     private location: Location,
     private splashScreenStateService: SplashScreenStateService,
@@ -25,5 +23,9 @@ export class MasterLayoutComponent {
 
   back() {
     this.location.back();
+  }
+
+  search(term: string) {
+    this.masterLayoutService.search(term);
   }
 }

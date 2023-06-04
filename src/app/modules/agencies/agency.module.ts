@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AgencyMapComponent } from './pages/agencies-list/agency-map.component';
 import { GoogleMapsModule } from '@angular/google-maps'
+import { LayoutsModule } from 'src/app/layouts/layouts.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { GoogleMapsModule } from '@angular/google-maps'
     AgencyRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    LayoutsModule
   ]
 })
 export class AgencyModule { }

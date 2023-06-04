@@ -1,21 +1,19 @@
 <div class="flex flex-col">
-    <div>
+    <div class="relative flex">
         <mat-toolbar color="primary" class="flex flex-row justify-between">
             <span>{{masterLayoutService.getTitle()}}</span>
-
             <span class="flex-auto">
             </span>
-            <button mat-icon-button class="example-icon favorite-icon"
-                [disabled]="!masterLayoutService.getState('search').enabled"
-                *ngIf="masterLayoutService.getState('search').visible">
-                <mat-icon>search</mat-icon>
-            </button>
+            <app-search [visible]="masterLayoutService.getState('search').visible!"
+                [enable]="masterLayoutService.getState('search').enabled!" (onSearch)="search($event)"></app-search>
             <button mat-icon-button class="example-icon" [disabled]="!masterLayoutService.getState('back').enabled"
-                *ngIf="masterLayoutService.getState('back').visible" (click)="masterLayoutService.back()">
+                title="Regresar" *ngIf="masterLayoutService.getState('back').visible"
+                (click)="masterLayoutService.back()">
                 <mat-icon>arrow_back</mat-icon>
             </button>
             <button mat-icon-button class="example-icon" [disabled]="!masterLayoutService.getState('save').enabled"
-                *ngIf="masterLayoutService.getState('save').visible" (click)="masterLayoutService.save()">
+                title="Guardar" *ngIf="masterLayoutService.getState('save').visible"
+                (click)="masterLayoutService.save()">
                 <mat-icon>save</mat-icon>
             </button>
 
