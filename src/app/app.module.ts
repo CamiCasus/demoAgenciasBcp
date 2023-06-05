@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgHttpLoaderModule } from 'ng-http-loader';
 import { LayoutsModule } from './layouts/layouts.module';
+import { SplashScreenService } from './core/services';
 
 @NgModule({
   declarations: [
@@ -26,4 +27,6 @@ import { LayoutsModule } from './layouts/layouts.module';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+    constructor(splashScreenService: SplashScreenService) {}
+ }

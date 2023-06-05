@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SplashScreenComponent } from './components/splash-screen/splash-screen.component';
-import { SplashScreenStateService } from './components/splash-screen/splash-screen-state.service';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,7 +10,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
-  declarations: [SplashScreenComponent],
+  declarations: [],
   imports: [
     CommonModule,
     MatIconModule,
@@ -24,7 +22,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDialogModule,
   ],
   exports: [
-    SplashScreenComponent,
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
@@ -33,6 +30,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     InfiniteScrollModule,
     MatDialogModule,
   ],
-  providers: [SplashScreenStateService],
+  providers: [],
 })
 export class SharedModule {}
