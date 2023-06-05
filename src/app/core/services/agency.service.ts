@@ -18,6 +18,13 @@ export class AgencyService {
     pageSize: number,
     term: string = ''
   ): Observable<Agency[]> {
+
+    /* 
+
+      Se generó un archivo argencias_lage.json con data (duplicada) para simular un conjunto de datos grandes y poder aplicar el infinite scroll.
+      Se puede usar el archivo original agencias.json que contiene la data que venía de prueba en el challege.
+    */
+
     const result$ = this.http
       .get<Agency[]>(`${this.environmentService.backendServerUrl}agencias_large.json`)
       .pipe(

@@ -13,7 +13,10 @@ export class SplashScreenService
     {
         this._router.events
             .pipe(
-                delay(1000),
+                /* 
+                    Delay agregado a voluntad para visualizar mejor el SplashScreen
+                */
+                delay(2000),
                 filter(event => event instanceof NavigationEnd),
                 take(1),
             )
