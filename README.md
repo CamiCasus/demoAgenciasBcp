@@ -6,22 +6,16 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Funcionalidades incluídas
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+ - Mostrar el splashScreen al momento de iniciar la página que desaparece al finalizar el primer NavigationEnd (*Se agregó un delay de 2 segundos para que se pueda apreciar un poco mejor la funcionalidad*) 
+ - Listar Agencias
+ - Paginar Agencias (de 20 en 20) utilizando infinite scroll
+ - Modificar Agencias
+ - Buscar agencias
+ - Marcar como favorita una agencia
+ - Visualizar la ubicación en el mapa de una agencia.
 
-## Build
+## Notas
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Se tienen 2 archivos con data (assets/data/agencias_large.json y assets/data/agencias.json). El primero sirve para tener mayor data y poder probar el paginado, el segundo tiene menor data y ayuda a probar mejor el agregado de agencias.
